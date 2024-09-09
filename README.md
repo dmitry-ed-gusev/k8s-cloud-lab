@@ -109,20 +109,25 @@ TBD
 
 ### Tech :: JavaScript / Node.js
 
-Some useful NPM js commands.
+This application requires the following versions of frameworks:
+
+- node v18.17.1+
+- npm v9.6.7+
+
+Below there are some useful NPM / Node js commands.
+
+#### Installing Dependencies
 
 - `npm init -y` - init project in the current dir
 - `npm install --save <package>` - install runtime (prod) latest version of dependency (you can omit --save)
-- `npm i <package>` - same as above
+- `npm i <package>` - same as above (short useful version)
 - `npm install --save express@5.0.0-beta.3` - same as above, but specific version
+- `npm install` - install all production (non-development) dependencies
+- `npm install --save-dev nodemon` - install development dependency (in this example - nodemon - monitor for live reloading Node.js application on code change)
+- `` - 
+
+#### Running The Application
+
 - `node src/index.js` - run this from the module/service directory in order to simply start it (rough start)
-- ``
-- ``
-
-### Tech :: Python
-
-TBD
-
-### Java
-
-TBD
+- `` -
+- `` -
