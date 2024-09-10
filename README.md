@@ -1,10 +1,11 @@
 # K8s and Cloud Laboratory Project
 
-Kubernetes and Cloud Learning Laboratory.
-
+Kubernetes and Cloud Learning Laboratory Project.
 Dmitrii Gusev (C), 2024
 
-## Tech Docs
+[TOC]
+
+## Tech Docs and Resources
 
 Here are some useful tech resources and documentation for this Lab Project:
 
@@ -14,7 +15,9 @@ Here are some useful tech resources and documentation for this Lab Project:
 - [Repo for 'Bootstrapping Microservices' book](https://github.com/bootstrapping-microservices-2nd-edition)
 - [Bogdan Stashchuk git repo for k8s course](https://github.com/bstashchuk/k8s)
 
-## Setup Software and Environment
+## Setup Local Software and Dev Environment
+
+### Setup Local K8s
 
 This installation was done in Windows 10+, but it should work in WSL or in any Linux environments.
 
@@ -46,9 +49,16 @@ This installation was done in Windows 10+, but it should work in WSL or in any L
 15. You can get k8s dashboard, by executing `minikube dashboard`
 16. Looks like we're done with environment!
 
-## Technologies Stack
+## Tech :: Docker / Podman
 
-### Tech :: K8s
+- `docker build -t video-streaming --file Dockerfile .` - 
+- `` - 
+- `` - 
+- `` - 
+- `` - 
+- `` - 
+
+## Tech :: K8s
 
 The following commands are shown in the idea, that you've done with aliases creating (as it was explained above (see hints)): `alias k=kubectl` and `alias m=minikube`
 
@@ -81,7 +91,7 @@ The following commands are shown in the idea, that you've done with aliases crea
 
 ### Creating and scaling deployment with nginx
 
-Pod name in a deployment: <code>{deployment-name-specified}-{replica set id}-{pod id}</code>
+Pod name structure in a deployment: **{deployment-name-specified}-{replica set id}-{pod id}**.
 
 - `k create <deploy|deployment> <name>` - creating deployment with the specified image
 - `k create deploy my-nginx-deploy --image=nginx` - create real deployment with nginx
@@ -89,7 +99,6 @@ Pod name in a deployment: <code>{deployment-name-specified}-{replica set id}-{po
 - `k delete deploy <name>` - delete deployment with the specified name
 - `k describe pod <pod-name-in-a-deployment>` - get detailed info about pod in a deployment
 - `k scale deploy <name> --replicas=<NUMBER>` - scale deployment to the specified number of pods. for example to scale our deployment to 3 replicas, we can use: `k scale deploy my-nginx-deploy --replicas=3`
-- 
 
 ### Creating and managing service
 
@@ -107,7 +116,7 @@ TBD
 
 TBD
 
-### Tech :: JavaScript / Node.js
+## Tech :: JavaScript / Node.js
 
 This application requires the following versions of frameworks:
 
@@ -116,18 +125,23 @@ This application requires the following versions of frameworks:
 
 Below there are some useful NPM / Node js commands.
 
-#### Installing Dependencies
+### Installing Dependencies
 
 - `npm init -y` - init project in the current dir
-- `npm install --save <package>` - install runtime (prod) latest version of dependency (you can omit --save)
-- `npm i <package>` - same as above (short useful version)
-- `npm install --save express@5.0.0-beta.3` - same as above, but specific version
-- `npm install` - install all production (non-development) dependencies
+- `npm install --save <package>` - install runtime (prod) latest version of dependency (you can skip --save)
+- `npm install <package>` / `npm i <package>` - same as above (short useful version)
+- `npm install --save express@5.0.0-beta.3` - same as above, but specific version of the dependency
+- `npm install` - install all (prod+dev) dependencies
+- `npm install --omit=dev` - install all production (non-development) dependencies
 - `npm install --save-dev nodemon` - install development dependency (in this example - nodemon - monitor for live reloading Node.js application on code change)
-- `` - 
 
-#### Running The Application
+### NPM Useful Commands
 
-- `node src/index.js` - run this from the module/service directory in order to simply start it (rough start)
-- `` -
-- `` -
+- `npm audit` - check for vulnerabilities
+- `npm audit fix` - check for vulnerabilities and fix, if possible
+
+### Running The Application
+
+- `node <path_to_the_main_js_file>` - run this from the module/service directory in order to simply start it (rough start)
+- `npm start` - run prod version (Node.js convention) - see setup in **package.json** file
+- `npm run start:dev` - run dev version (Node.js convention) - see setup in **package.json** file
