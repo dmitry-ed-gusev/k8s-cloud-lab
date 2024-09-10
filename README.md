@@ -51,12 +51,24 @@ This installation was done in Windows 10+, but it should work in WSL or in any L
 
 ## Tech :: Docker / Podman
 
+### Building Images
+
 - `docker build -t video-streaming --file Dockerfile .` - 
 - `` - 
 - `` - 
 - `` - 
 - `` - 
 - `` - 
+
+### Running Containers
+
+- `` - 
+- `` - 
+- `` - 
+
+### Other Useful Commands
+
+TBD
 
 ## Tech :: K8s
 
