@@ -51,24 +51,36 @@ This installation was done in Windows 10+, but it should work in WSL or in any L
 
 ## Tech :: Docker / Podman
 
-### Building Images
+In all commands docker can be replaced with podman command.
 
-- `docker build -t video-streaming --file Dockerfile .` - 
-- `` - 
-- `` - 
+### Working with Images
+
+- `docker build -t <your-name-for-the-image> --file <path-to-your-Dockerfile> <path-to-project>` - building docker image from the specified docker file (-t - tag for the image, --file - docker file, path to project - usually dot . is used - specifying the current directory)
+- `docker images` / `docker image list` - show list of images (local)
+- `docker rmi <image name or tag>` / `docker image rm <image name or tag>` - removing image, with flag --force - this command can delete even image that is in use
 - `` - 
 - `` - 
 - `` - 
 
-### Running Containers
+### Working with Containers
 
-- `` - 
-- `` - 
-- `` - 
+- `docker ps -a` / `docker container list -a` - show all containers (running and stopped), without flag -a this command shows only running containers, -a is a shorthand for --all option
+- `docker container prune` - remove unused containers
+- `docker rm <container-id> --force` / `docker container rm <container-id> --force` - forcibly removes container by provided ID, without flag --force - if container is referenced somehow, it won't be deleted
+- `docker run -d -p <host-port>:<container-port> -e <name>=<value> <image-name>` - run container from an image (-d - detached mode, run in background, -p - expose ports(s) from container to host, -e - pass environment variable into container execution environment, image name or ID for execution)
+- `docker logs <container-id>` - show logs of the container
+- `docker exec -it <container-id> bash` - shell into the container in order to check "what's going on inside?"
+- `docker stop <container-id>` - stopping the container by provided ID
 
 ### Other Useful Commands
 
 TBD
+
+## Tech :: docker-compose / podman-compose
+
+1. `` - 
+2. `` - 
+3. `` - 
 
 ## Tech :: K8s
 

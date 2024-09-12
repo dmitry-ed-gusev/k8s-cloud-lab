@@ -15,3 +15,8 @@ In order to run this microservice, you should do the following (all commands sho
 1. `npm install` - install all dependencies (production + development)
 2. `PORT=3000 npm run start:dev` - run locally this microservice with node monitor that will reload the application on code changes
 3. `export PORT=3000; npm run start:dev` - same as above, different env variable syntax
+
+### Microservice with Docker
+
+1. `docker build -t video-streaming-service --file Dockerfile .` - building docker image for this microservice
+2. `docker run -d -p 3000:3000 –e PORT=3000 video-streaming-service` - run container with the microservice from previously built image
