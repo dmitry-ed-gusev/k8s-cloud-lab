@@ -58,23 +58,27 @@ In all commands docker can be replaced with podman command.
 - `docker build -t <your-name-for-the-image> --file <path-to-your-Dockerfile> <path-to-project>` - building docker image from the specified docker file (-t - tag for the image, --file - docker file, path to project - usually dot . is used - specifying the current directory)
 - `docker images` / `docker image list` - show list of images (local)
 - `docker rmi <image name or tag>` / `docker image rm <image name or tag>` - removing image, with flag --force - this command can delete even image that is in use
-- `` - 
-- `` - 
-- `` - 
+- `docker tag <image-id> <target_name>` - tag image by ID with the specified tag
+- `docker tag <existing-image-id> <registry-url>/<image-name>:<version>` - re-tag the existing local image by ID with the tag in order to upload it  to an external registry
+- `docker login <your-registry-url> --username <your-username> --password <your-password>` - login into external registry
+- `docker push <registry-url>/<image-name>:<version>` - upload image to the external registry
 
 ### Working with Containers
 
 - `docker ps -a` / `docker container list -a` - show all containers (running and stopped), without flag -a this command shows only running containers, -a is a shorthand for --all option
 - `docker container prune` - remove unused containers
 - `docker rm <container-id> --force` / `docker container rm <container-id> --force` - forcibly removes container by provided ID, without flag --force - if container is referenced somehow, it won't be deleted
-- `docker run -d -p <host-port>:<container-port> -e <name>=<value> <image-name>` - run container from an image (-d - detached mode, run in background, -p - expose ports(s) from container to host, -e - pass environment variable into container execution environment, image name or ID for execution)
+- `docker run -d -p <host-port>:<container-port> -e <name>=<value> <image-name>` - run container from a local image (-d - detached mode, run in background, -p - expose ports(s) from container to host, -e - pass environment variable into container execution environment, image name or ID for execution)
+- `docker run -d -p <host-port>:<container-port> -e <name>=<value> <registry-url>/<image-name>:<version>` - run container from a remote repository image, options are as above (-d - detached, -p - port publishing, -e - env variables, image name with the registry (repository) address)
 - `docker logs <container-id>` - show logs of the container
-- `docker exec -it <container-id> bash` - shell into the container in order to check "what's going on inside?"
+- `docker exec -it <container-id> bash` - shell into the container in order to check "what's going on inside?", this command allows you to shell even in the storred container (if it appears in the list returned by command `docker ps -a`)
 - `docker stop <container-id>` - stopping the container by provided ID
 
 ### Other Useful Commands
 
-TBD
+- `docker stop $(docker ps -a -q)` - stop all executed containers
+- `docker rm $(docker ps -a -q)` - remove all containers
+- `docker system prune --volumes --all` - removes all cached images on the local PC + removes all attached volumes
 
 ## Tech :: docker-compose / podman-compose
 
