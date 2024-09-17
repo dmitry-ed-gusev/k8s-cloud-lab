@@ -14,7 +14,7 @@ if (!process.env.PORT) {
 }
 
 //
-// useful constants for the application
+// Useful constants for the application
 //
 const PORT = process.env.PORT;
 const VERSION = 'ver. 1';
@@ -24,9 +24,13 @@ const MESSAGE = `<h1>Hello World! <i>(host: ${os.hostname()}, version: ${VERSION
 // Registers a HTTP GET handler for /nginx URI
 //
 app.get("/nginx", async (req, res) => {
+
+    console.log("Requested path: [/nginx]");
+
     const url = 'http://nginx'
     const response = await fetch(url);
     const body = await response.text();
+
     res.send(body)
 })
 
@@ -34,9 +38,13 @@ app.get("/nginx", async (req, res) => {
 // Registers a HTTP GET handler for /jsonplaceholder URI
 //
 app.get("/jsonplaceholder", async (req, res) => {
+
+    console.log("Requested path: [/jsonplaceholder]");
+
     const url = "https://jsonplaceholder.typicode.com/todos";
     const response = await fetch(url);
     const body = await response.text();
+
     res.setHeader("Content-Type", "application/json");
     res.send(body);
 });
@@ -45,7 +53,10 @@ app.get("/jsonplaceholder", async (req, res) => {
 // Registers a HTTP GET handler for / URI (root)
 //
 app.get("/", (req, res) => {
-    console.log(MESSAGE)
+
+    console.log("Requested path: [/]");
+
+    console.log(`Returning ${MESSAGE} string.`)
     res.send(MESSAGE)
 });
 
@@ -53,6 +64,9 @@ app.get("/", (req, res) => {
 // Registers a HTTP GET route for video streaming URI
 //
 app.get("/video", async (req, res) => {
+
+    console.log("Requested path: [/video]");
+
     const videoPath = "../videos/SampleVideo_1280x720_1mb.mp4";
     const stats = await fs.promises.stat(videoPath);
 
