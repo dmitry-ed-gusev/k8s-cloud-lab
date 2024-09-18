@@ -18,46 +18,28 @@ if (!process.env.PORT) {
 //
 const PORT = process.env.PORT;
 const VERSION = 'ver. 1';
-const MESSAGE = `<h1>Hello World! <i>(host: ${os.hostname()}, version: ${VERSION})</i></h1>`;
-
-//
-// Registers a HTTP GET handler for /nginx URI
-//
-app.get("/nginx", async (req, res) => {
-
-    console.log("Requested path: [/nginx]");
-
-    const url = 'http://nginx'
-    const response = await fetch(url);
-    const body = await response.text();
-
-    res.send(body)
-})
-
-//
-// Registers a HTTP GET handler for /jsonplaceholder URI
-//
-app.get("/jsonplaceholder", async (req, res) => {
-
-    console.log("Requested path: [/jsonplaceholder]");
-
-    const url = "https://jsonplaceholder.typicode.com/todos";
-    const response = await fetch(url);
-    const body = await response.text();
-
-    res.setHeader("Content-Type", "application/json");
-    res.send(body);
-});
+const MESSAGE = `<h1>Hello World! <br><i>(host: ${os.hostname()}, version: ${VERSION})</i></h1>`;
+const HEALTH_MESSAGE = "OK"
 
 //
 // Registers a HTTP GET handler for / URI (root)
 //
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
 
     console.log("Requested path: [/]");
 
     console.log(`Returning ${MESSAGE} string.`)
     res.send(MESSAGE)
+});
+
+//
+// Registers a HTTP GET handler for /health URI (health check)
+//
+app.get("/health", async (req, res) => {
+
+    console.log("Requested path: [/health]");
+
+    res.send(HEALTH_MESSAGE);
 });
 
 //
